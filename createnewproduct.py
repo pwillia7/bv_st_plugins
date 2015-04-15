@@ -6,7 +6,6 @@ import urllib.parse
 
 
 # fix DATE
-# Do mother fucking API calls
 
 class promptcreatenewproductCommand(sublime_plugin.WindowCommand):
 	def run(self):
