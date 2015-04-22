@@ -106,15 +106,15 @@ class submitreviewsCommand(sublime_plugin.WindowCommand):
 		outdoorReviews = [["The Best!","I bought this bad boy about a month ago and it has stood up well to the desert. Now we use it in our home it's so convenient and useful. I'm very glad that I made this purchase.","Erin"+str(randint(0,9999))],["This is all I need.","Take this with me every where I go. looking to get another "+productname+" next. Won't use anything else. Works great with my tent, hat, koozie, and other camping equipment. Wether I'm trying to hunt, fish, camp, or hike, I always take my "+productname+". I talked several fellow Soldiers and family members to purchase them as well.","Jason"+str(randint(0,9999))],["Great!","I bought this for my charter boat, my clients are always amazed at how well it works, and how little trouble we have with it. "+productname+" is a must for a all day charter.","Nicholas"+str(randint(0,9999))]]
 
 		# Determine product type based on input
-		if ptype == 1 or 'Electronics' or 'electronics':
+		if ptype == 1 or ptype == 'Electronics' or ptype == 'electronics':
 			reviews = electronicsReviews
-		elif ptype == 2 or 'Health & Beauty' or 'health & beauty':
+		elif ptype == 2 or ptype == 'Health & Beauty' or ptype == 'health & beauty':
 			reviews = healthbeautyReviews
-		elif ptype == 3 or 'Finserv' or 'finserv':
+		elif ptype == 3 or ptype == 'Finserv' or ptype == 'finserv':
 			reviews = finservReviews
-		elif ptype == 4 or 'Apparel' or 'apparel':
+		elif ptype == 4 or ptype == 'Apparel' or ptype == 'apparel':
 			reviews = apparelReviews
-		elif ptype == 5 or 'Outdoors' or 'outdoors':
+		elif ptype == 5 or ptype == 'Outdoors' or ptype == 'outdoors':
 			reviews = outdoorReviews
 		else:
 			# Fail out if product type cannot be determined
