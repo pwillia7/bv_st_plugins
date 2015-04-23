@@ -9,29 +9,24 @@ class promptbazaarintegrateCommand(sublime_plugin.WindowCommand):
 	def get_client(self):
 		self.window.show_input_panel("Client:","smb-demo",self.client_done,None,None)
 
-	def get_dzone(self):
-		self.window.show_input_panel("Deployment Zone:","Patrick%%20Williams",self.bvi_continue,None,None)
-
 	def client_done(self, data):
 		self.client = data
-		self.get_dzone()
+		self.bvi_continue()
 
 	def pid_done(self, data):
 		self.pid = data
 		self.get_client()
-
-	def dzone_done(self, data):
-		self.dzone = data
-		self.bvi_continue()
+		
 		
 	def bvi_continue(self):
-		self.window.run_command("bazaarintegrate", {"pid": self.pid, "client": self.client}, "dzone": self.dzone )
+		self.window.run_command("bazaarintegrate", {"pid": self.pid, "client": self.client} )
 
 class bazaarintegrateCommand(sublime_plugin.TextCommand):
-	def run(self, edit, pid, client, dzone):
+	def run(self, edit, pid, client):
 
 		# -------------------------------------------- #
-		fSource = '//display-stg.ugc.bazaarvoice.com/static/'+client+'/'+dzone+'/en_US/bvapi.js'
+		# Define your bvapi.js source & productid here #
+		fSource = '//display-stg.ugc.bazaarvoice.com/static/'+client+'/PWilliams/en_US/bvapi.js'
 		productid = pid
 		# -------------------------------------------- #
 
@@ -56,4 +51,3 @@ class bazaarintegrateCommand(sublime_plugin.TextCommand):
 
 		content = content.replace(bodyBegin, bodyBegin+bvdivs)
 		self.view.replace(edit, region, content)
-		
