@@ -129,6 +129,12 @@ class submitreviewsCommand(sublime_plugin.WindowCommand):
 		# count for output
 		count = 1
 
+		# Define passkey based on clientname
+		if clientname == 'smb-demo':
+			apipasskey = 's5pfp4r4tgdurx257axt9z3a'
+		elif clientname == 'sales-test':
+			apipasskey = 'mpefzrxhjh3scwukynzqx73y'
+
 		# Loop submits review based on templates
 		for x in reviews:
 			params = urllib.parse.urlencode({
@@ -139,7 +145,7 @@ class submitreviewsCommand(sublime_plugin.WindowCommand):
 				'ReviewText' : x[1],
 				'Title' : x[0],
 				'UserNickname' : x[2],
-				'PassKey' : 's5pfp4r4tgdurx257axt9z3a'
+				'PassKey' : apipasskey
     		})
 
 			headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}

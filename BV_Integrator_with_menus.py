@@ -9,24 +9,29 @@ class promptbazaarintegrateCommand(sublime_plugin.WindowCommand):
 	def get_client(self):
 		self.window.show_input_panel("Client:","smb-demo",self.client_done,None,None)
 
+	def get_dzone(self):
+		self.window.show_input_panel("Deployment Zone:","Main%20Site",self.dzone_done,None,None)
+
 	def client_done(self, data):
 		self.client = data
-		self.bvi_continue()
+		self.get_dzone()
 
 	def pid_done(self, data):
 		self.pid = data
 		self.get_client()
+	def dzone_done(self,data):
+		self.dzone = data
+		self.bvi_continue()
 		
 		
 	def bvi_continue(self):
-		self.window.run_command("bazaarintegrate", {"pid": self.pid, "client": self.client} )
+		self.window.run_command("bazaarintegrate", {"pid": self.pid, "client": self.client, "dzone": self.dzone} )
 
 class bazaarintegrateCommand(sublime_plugin.TextCommand):
-	def run(self, edit, pid, client):
+	def run(self, edit, pid, client, dzone):
 
 		# -------------------------------------------- #
-		# Define your bvapi.js source & productid here #
-		fSource = '//display-stg.ugc.bazaarvoice.com/static/'+client+'/PWilliams/en_US/bvapi.js'
+		fSource = '//display-stg.ugc.bazaarvoice.com/static/'+client+'/'+dzone+'/en_US/bvapi.js'
 		productid = pid
 		# -------------------------------------------- #
 
